@@ -7,6 +7,8 @@ import {
   deletePatient
 } from '../controllers/patient.controller.js';
 import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { createPatientValidator, updatePatientValidator } from '../validators/patient.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -62,7 +64,7 @@ router.use(protect);
  */
 router.route('/')
   .get(getAllPatients)
-  .post(restrictTo('admin', 'doctor'), createPatient);
+  .post(restrictTo('admin', 'doctor'), createPatientValidator, handleValidationResult, createPatient);
 /**
  * @openapi
  * /patients/{id}:
@@ -150,7 +152,7 @@ router.route('/')
  */
 router.route('/:id')
   .get(getPatient)
-  .patch(restrictTo('admin', 'doctor'), updatePatient)
+  .patch(restrictTo('admin', 'doctor'), updatePatientValidator, handleValidationResult, updatePatient)
   .delete(restrictTo('admin'), deletePatient);
 
 export default router;

@@ -130,6 +130,33 @@ Common status codes:
 
 ---
 
+## 🛡️ Input Validation & Security
+
+MediFlow uses [express-validator](https://express-validator.github.io/) to ensure all incoming data is validated and sanitized before reaching your business logic or database. Every route that accepts user input (authentication, user, patient, medication, appointment, diagnosis, prescription, invoice) is protected by validation middleware.
+
+- **Validation:** Each endpoint checks for required fields, correct types, and valid values (e.g., email format, password length, allowed enums, valid Mongo IDs, etc.).
+- **Sanitization:** All string inputs are trimmed and checked for emptiness. Dates and numbers are validated for format and range.
+- **Error Handling:** If validation fails, the API returns a clear error response:
+  ```json
+  {
+    "status": "error",
+    "message": "Validation failed",
+    "errors": [
+      { "field": "email", "message": "Valid email is required" },
+      { "field": "password", "message": "Password must be at least 8 characters" }
+    ]
+  }
+  ```
+- **Security:**
+  - All endpoints are protected by authentication and role-based authorization.
+  - Helmet, CORS, rate limiting, and input sanitization are enabled by default.
+  - Passwords are hashed with bcrypt before storage.
+  - Sensitive error details are hidden in production.
+
+**Best Practice:** Always validate and sanitize input on both client and server. MediFlow makes this easy and automatic for you.
+
+---
+
 ## 🧑‍💻 Contributing & Support
 We welcome contributions! Please open an issue or pull request. For help or questions, email [support@mediflow.com](mailto:support@mediflow.com).
 

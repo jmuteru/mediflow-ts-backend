@@ -1,6 +1,8 @@
 import express from 'express';
 import { getAllUsers, getUser, updateUser, deleteUser } from '../controllers/user.controller.js';
 import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { updateUserValidator } from '../validators/user.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -111,7 +113,7 @@ router.route('/')
  */
 router.route('/:id')
   .get(restrictTo('admin'), getUser)
-  .patch(restrictTo('admin'), updateUser)
+  .patch(restrictTo('admin'), updateUserValidator, handleValidationResult, updateUser)
   .delete(restrictTo('admin'), deleteUser);
 
 export default router;

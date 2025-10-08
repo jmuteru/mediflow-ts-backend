@@ -1,6 +1,8 @@
 import express from 'express';
 import * as appointmentController from '../controllers/appointment.controller.js';
 import { protect } from '../middleware/auth.middleware.js';
+import { createAppointmentValidator, updateAppointmentValidator } from '../validators/appointment.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -52,7 +54,7 @@ router.use(protect);
  */
 router.route('/')
   .get(appointmentController.getAllAppointments)
-  .post(appointmentController.createAppointment);
+  .post(createAppointmentValidator, handleValidationResult, appointmentController.createAppointment);
 /**
  * @openapi
  * /appointments/{id}:
@@ -130,7 +132,7 @@ router.route('/')
  */
 router.route('/:id')
   .get(appointmentController.getAppointment)
-  .patch(appointmentController.updateAppointment)
+  .patch(updateAppointmentValidator, handleValidationResult, appointmentController.updateAppointment)
   .delete(appointmentController.deleteAppointment);
 /**
  * @openapi

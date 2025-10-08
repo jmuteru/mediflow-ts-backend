@@ -15,6 +15,8 @@ import {
   processPayment
 } from '../controllers/invoice.controller.js';
 import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { createMedicationValidator, updateMedicationValidator } from '../validators/medication.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -79,7 +81,7 @@ router.use(protect);
 router
   .route('/')
   .get(getAllMedications)
-  .post(restrictTo('admin', 'doctor'), createMedication);
+  .post(restrictTo('admin', 'doctor'), createMedicationValidator, handleValidationResult, createMedication);
 /**
  * @openapi
  * /medications/{id}:
@@ -163,7 +165,7 @@ router
 router
   .route('/:id')
   .get(getMedication)
-  .patch(restrictTo('admin', 'doctor'), updateMedication)
+  .patch(restrictTo('admin', 'doctor'), updateMedicationValidator, handleValidationResult, updateMedication)
   .delete(restrictTo('admin', 'doctor', 'pharmacist'), deleteMedication);
 /**
  * @openapi

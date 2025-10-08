@@ -1,6 +1,8 @@
 import express from 'express';
 import * as diagnosisController from '../controllers/diagnosis.controller.js';
 import { protect } from '../middleware/auth.middleware.js';
+import { createDiagnosisValidator, updateDiagnosisValidator } from '../validators/diagnosis.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -48,7 +50,7 @@ router.use(protect);
  *         description: Unauthorized
  */
 router.get('/', diagnosisController.getAllDiagnoses);
-router.post('/', diagnosisController.createDiagnosis);
+router.post('/', createDiagnosisValidator, handleValidationResult, diagnosisController.createDiagnosis);
 /**
  * @openapi
  * /diagnoses/{id}:
@@ -123,9 +125,10 @@ router.post('/', diagnosisController.createDiagnosis);
  *       404:
  *         description: Diagnosis not found
  */
-router.get('/:id', diagnosisController.getDiagnosisById);
-router.patch('/:id', diagnosisController.updateDiagnosis);
-router.delete('/:id', diagnosisController.deleteDiagnosis);
+router.route('/:id')
+  .get(diagnosisController.getDiagnosisById)
+  .patch(updateDiagnosisValidator, handleValidationResult, diagnosisController.updateDiagnosis)
+  .delete(diagnosisController.deleteDiagnosis);
 /**
  * @openapi
  * /diagnoses/patient/{patientId}:

@@ -10,6 +10,8 @@ import {
   fillPrescription,
   refillPrescription
 } from '../controllers/prescription.controller.js';
+import { createPrescriptionValidator, updatePrescriptionValidator } from '../validators/prescription.validators.js';
+import { handleValidationResult } from '../middleware/validationResult.js';
 
 const router = express.Router();
 
@@ -63,7 +65,7 @@ const router = express.Router();
 router
   .route('/')
   .get(protect, getAllPrescriptions)
-  .post(protect, restrictTo('doctor', 'admin', 'pharmacist'), createPrescription);
+  .post(protect, restrictTo('doctor', 'admin', 'pharmacist'), createPrescriptionValidator, handleValidationResult, createPrescription);
 /**
  * @openapi
  * /prescriptions/{id}:
@@ -143,7 +145,7 @@ router
 router
   .route('/:id')
   .get(protect, getPrescriptionById)
-  .put(protect, restrictTo('doctor', 'admin'), updatePrescription)
+  .put(protect, restrictTo('doctor', 'admin'), updatePrescriptionValidator, handleValidationResult, updatePrescription)
   .delete(protect, restrictTo('admin'), deletePrescription);
 /**
  * @openapi
