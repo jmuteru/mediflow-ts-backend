@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx src/server.ts",
     "build": "tsc -p tsconfig.json",
+  "build:ci": "pnpm install --prod=false && tsc -p tsconfig.json",
     "start": "node dist/server.ts",
     "test": "jest",
     "script:create-users": "ts-node src/scripts/createUsers.ts",
