@@ -2,12 +2,12 @@
   "name": "MediFlow",
   "version": "1.0.0",
   "description": "Healthcare appointment management system",
-  "main": "dist/server.js",
+  "main": "dist/server.ts",
   
   "scripts": {
     "dev": "tsx src/server.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/server.js",
+    "start": "node dist/server.ts",
 
 
     "test": "jest",
