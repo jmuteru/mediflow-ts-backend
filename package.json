@@ -1,31 +1,59 @@
 {
-  "name": "health-connect",
+  "name": "MediFlow",
   "version": "1.0.0",
   "description": "Healthcare appointment management system",
-  "main": "src/server.js",
+  "main": "dist/server.js",
+  
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "jest"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+   "dev": "node --loader ts-node/esm --trace-warnings src/server.ts",
+
+
+    "test": "jest",
+    "script:create-users": "ts-node src/scripts/createUsers.ts",
+    "script:create-patients": "ts-node src/scripts/createPatients.ts",
+    "script:create-sample-meds": "ts-node src/scripts/createSampleMedications.ts",
+    "script:create-test-data": "ts-node src/scripts/createTestData.ts",
+    "script:create-test-diagnosis": "ts-node src/scripts/createTestDiagnosis.ts",
+    "script:list-appointments": "ts-node src/scripts/listAppointments.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "@scalar/express-api-reference": "^0.8.20",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.1.0",
     "helmet": "^6.0.1",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^6.16.0",
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/compression": "^1.8.1",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.7.0",
+    "@types/swagger-jsdoc": "^6.0.4",
     "jest": "^29.5.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "swagger-jsdoc": "^6.2.8",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
   }
 }

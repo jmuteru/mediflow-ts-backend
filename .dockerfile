@@ -5,4 +5,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 5000
-CMD ["node", "index.js"]  # or your entry point like main.js
+CMD ["node", "server.ts"]  # or your entry point like main.js

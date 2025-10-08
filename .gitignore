@@ -5,3 +5,7 @@ package-lock.json
 yarn.lock
 coverage
 *.log
+
+
+#Ignore cursor AI rules
+.cursor\rules\codacy.mdc
