@@ -20,14 +20,7 @@ import diagnosisRoutes from './routes/diagnosis.routes.js';
 import appointmentRoutes from './routes/appointment.routes.js';
 import userRoutes from './routes/user.routes.js';
 
-// Routes (will be converted progressively)
-// import authRoutes from './routes/auth.routes.js';
-// import userRoutes from './routes/user.routes.js';
-// import patientRoutes from './routes/patient.routes.js';
-// import medicationRoutes from './routes/medication.routes.js';
-// import prescriptionRoutes from './routes/prescription.routes.js';
-// import appointmentRoutes from './routes/appointment.routes.js';
-// import diagnosisRoutes from './routes/diagnosis.routes.js';
+
 
 import errorHandler from './middleware/errorHandler.js';
 
@@ -36,7 +29,16 @@ dotenv.config();
 const app = express();
 
 // Security headers
-app.use(helmet());
+app.use('/docs', helmet({
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      "script-src": ["'self'", "'unsafe-inline'", "https:"],
+      "style-src": ["'self'", "'unsafe-inline'", "https:"],
+      "img-src": ["'self'", "data:", "https:"]
+    }
+  }
+}));
 // CORS
 app.use(cors());
 // Compression
@@ -102,7 +104,7 @@ app.get('/openapi.json', (_req: Request, res: Response) => {
 app.use(errorHandler);
 
 // Database
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/health-connect';
+const mongoUri = process.env.MONGODB_URI || 'your-mongodb-uri';
 mongoose
   .connect(mongoUri)
   .then(() => {

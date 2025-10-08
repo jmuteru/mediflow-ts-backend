@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { sign, verify, type Secret, type SignOptions } from 'jsonwebtoken';
+import jwt, { Secret, SignOptions } from 'jsonwebtoken';
+const { sign, verify } = jwt;
 import User, { IUserDocument } from '../models/user.model.js';
 import AppError from '../utils/appError.js';
 import crypto from 'crypto';
