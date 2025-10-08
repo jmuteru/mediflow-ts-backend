@@ -163,19 +163,17 @@ MediFlow uses [express-validator](https://express-validator.github.io/) to ensur
 
 ---
 
-## 🧑‍💻 Contributing & Support
-We welcome contributions! Please open an issue or pull request. For help or questions, email [support@mediflow.com](mailto:support@mediflow.com).
 
----
+
+
 
 ## 📄 License
 MediFlow is open source under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
-## ❤️ About MediFlow
-MediFlow is built by healthcare professionals and engineers who believe in better, more accessible digital health. We’re here to help you build the future of care.
 
----
+
+
 
 For full API details, see the interactive docs at `/docs` or the OpenAPI spec at `/openapi.json`. 
