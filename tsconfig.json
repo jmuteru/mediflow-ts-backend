@@ -10,11 +10,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-  "resolveJsonModule": true,
-  "isolatedModules": true,
-  "sourceMap": true,
-  "typeRoots": [ "./node_modules/@types", "../node_modules/@types", "../../node_modules/@types" ]
-
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "sourceMap": true
+    // No explicit "types" array: TypeScript will auto-include all installed types
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

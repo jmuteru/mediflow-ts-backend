@@ -109,6 +109,9 @@ export const createAppointment = async (req: Request, res: Response, next: NextF
     const populatedAppointment = await Appointment.findById(appointment._id)
       .populate('patient', 'firstName lastName dateOfBirth contact')
       .populate('provider', 'firstName lastName role specialty');
+    if (!populatedAppointment) {
+      return next(new AppError('Appointment not found after creation', 404));
+    }
     const formattedAppointment = formatAppointmentResponse(populatedAppointment);
     res.status(201).json({ success: true, data: formattedAppointment, message: 'Appointment created successfully' });
   } catch (error: unknown) {
