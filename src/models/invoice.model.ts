@@ -92,7 +92,7 @@ const invoiceSchema = new mongoose.Schema<IInvoiceDocument>({
   isActive: { type: Boolean, default: true }
 }, { timestamps: true });
 
-invoiceSchema.pre('save', async function(next) {
+invoiceSchema.pre('save', async function(this: IInvoiceDocument, next: (err?: any) => void) {
   if (!this.invoiceNumber) {
     try {
       const count = await (this.constructor as unknown as IInvoiceModel).countDocuments();
@@ -110,7 +110,7 @@ invoiceSchema.pre('save', async function(next) {
   next();
 });
 
-invoiceSchema.pre('save', function(next) {
+invoiceSchema.pre('save', function(this: IInvoiceDocument, next: (err?: any) => void) {
   if (this.items && this.items.length > 0) {
     this.consultationFee = this.items.filter(item => item.type === 'consultation').reduce((sum, item) => sum + item.total, 0);
     this.medicationTotal = this.items.filter(item => item.type === 'medication').reduce((sum, item) => sum + item.total, 0);

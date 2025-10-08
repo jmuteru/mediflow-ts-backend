@@ -64,7 +64,7 @@ const userSchema = new mongoose.Schema<IUserDocument>({
   timestamps: true
 });
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function(this: IUserDocument, next: (err?: any) => void) {
   if (!this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
@@ -75,11 +75,11 @@ userSchema.pre('save', async function(next) {
   }
 });
 
-userSchema.methods.comparePassword = async function(candidatePassword: string) {
+userSchema.methods.comparePassword = async function(this: IUserDocument, candidatePassword: string) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-userSchema.methods.changedPasswordAfter = function(JWTTimestamp: number) {
+userSchema.methods.changedPasswordAfter = function(this: IUserDocument, JWTTimestamp: number) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(String(this.passwordChangedAt.getTime() / 1000), 10);
     return JWTTimestamp < changedTimestamp;
@@ -87,7 +87,7 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp: number) {
   return false;
 };
 
-userSchema.methods.createPasswordResetToken = function() {
+userSchema.methods.createPasswordResetToken = function(this: IUserDocument) {
   const resetToken = crypto.randomBytes(32).toString('hex');
   this.passwordResetToken = crypto
     .createHash('sha256')
