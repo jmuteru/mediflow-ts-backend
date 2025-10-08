@@ -1,6 +1,6 @@
 # MediFlow API Documentation
 
-This is the backend API service for the Health Connect healthcare/medical application. The API provides endpoints for user authentication, patient management, and medication tracking.
+This is the backend API service for the Mediflow healthcare/medical application. The API provides endpoints for user authentication, patient management, and medication tracking.
 
 ## Table of Contents
 - [Base URL](#base-url)
