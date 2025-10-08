@@ -30,7 +30,7 @@ The API is fully documented and easy to explore at /docs (or /swagger if enabled
     }
   },
   servers: [
-    { url: '/api', description: 'API Base' }
+    { url: '/api/v1', description: 'API v1 Base' }
   ],
   tags: [
     { name: 'Authentication', description: 'User signup, login, password management, and token refresh.' },

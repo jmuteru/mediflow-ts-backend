@@ -77,14 +77,14 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Mount routes
-app.use('/api/auth', authRoutes);
-app.use('/api/patients', patientRoutes);
-app.use('/api/medications', medicationRoutes);
-app.use('/api/prescriptions', prescriptionRoutes);
-app.use('/api/invoices', invoiceRoutes);
-app.use('/api/diagnoses', diagnosisRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/patients', patientRoutes);
+app.use('/api/v1/medications', medicationRoutes);
+app.use('/api/v1/prescriptions', prescriptionRoutes);
+app.use('/api/v1/invoices', invoiceRoutes);
+app.use('/api/v1/diagnoses', diagnosisRoutes);
+app.use('/api/v1/appointments', appointmentRoutes);
+app.use('/api/v1/users', userRoutes);
 
 // Scalar API Docs (serves an interactive reference)
 app.use('/docs', apiReference({

@@ -87,9 +87,15 @@ Authorization: Bearer <your_token>
 
 ---
 
+## 📦 API Versioning
+
+All endpoints are now versioned! Use `/api/v1/` as the base path for all API requests. This ensures backward compatibility and smooth upgrades in the future.
+
+---
+
 ## 📝 Example: Creating a Patient
 ```http
-POST /api/patients
+POST /api/v1/patients
 ```
 **Request Body:**
 ```json
