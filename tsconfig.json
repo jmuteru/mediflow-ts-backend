@@ -13,7 +13,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "sourceMap": true,
-    "types": ["node", "express"]
+    "types": ["node", "express","bcryptjs"],
+    "typeRoots": [ "./node_modules/@types", "../node_modules/@types", "../../node_modules/@types" ]
+
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
