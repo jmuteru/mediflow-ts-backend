@@ -7,7 +7,7 @@ export function handleValidationResult(req: Request, res: Response, next: NextFu
     return res.status(400).json({
       status: 'error',
       message: 'Validation failed',
-      errors: errors.array().map(e => ({ field: e.param, message: e.msg }))
+      errors: errors.array().map(e => ({ field: (e as any).param ?? (e as any).path ?? 'unknown', message: e.msg }))
     });
   }
   next();
