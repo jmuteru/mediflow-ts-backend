@@ -46,7 +46,8 @@ Whether you’re building a patient portal, a clinic dashboard, or a telemedicin
    pnpm run dev
    ```
 5. **Access the API docs:**
-  ⚠️It might take  up to a minute to access the docs due to the API being hosted on Render's free  tier.The instance will spin down with inactivity, which can delay requests by 50 seconds or more.
+
+  ⚠️- It might take  up to a minute to access the docs due to the API being hosted on Render's free  tier.The instance will spin down with inactivity, which can delay requests by 50 seconds or more.
    - Interactive: [https://mediflow-ts-backend.onrender.com/docs](https://mediflow-ts-backend.onrender.com/docs)
    - Raw OpenAPI: [https://mediflow-ts-backend.onrender.com/openapi.json](https://mediflow-ts-backend.onrender.com/openapi.json)
 
